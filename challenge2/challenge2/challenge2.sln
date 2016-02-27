@@ -5,6 +5,17 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "challenge2", "challenge2\challenge2.csproj", "{84BE6D69-68C6-40BD-B6D0-A4506EA88C3B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{92FA8382-6D2A-4ADE-8271-C836AB3BC9BC}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureVMPublishModule.psm1 = PublishScripts\AzureVMPublishModule.psm1
+		PublishScripts\Publish-WebApplicationVM.ps1 = PublishScripts\Publish-WebApplicationVM.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{43D64F71-91B1-4ADC-81E1-6744F7A4699D}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\challenge2-WAWS-dev.json = PublishScripts\Configurations\challenge2-WAWS-dev.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{43D64F71-91B1-4ADC-81E1-6744F7A4699D} = {92FA8382-6D2A-4ADE-8271-C836AB3BC9BC}
 	EndGlobalSection
 EndGlobal

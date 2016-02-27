@@ -1,3 +1,5 @@
+http://compareit4mechallenge3.azurewebsites.net/
+
 *****************************
 GET /api/customers
 

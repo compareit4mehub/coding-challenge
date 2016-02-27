@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace challenge3.Models
+﻿namespace challenge3.Models
 {
     public class PhoneNumber
     {

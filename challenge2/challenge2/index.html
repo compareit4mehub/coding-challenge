@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+    <style>
+        #loader {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            -moz-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            -o-transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            z-index: 99999;
+        }
+
+        .errorText {
+            display: none;
+            position: absolute;
+            color: #f00;
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+                <div class="temp-converter">
+                    <h1>Temperature converter</h1>
+                    <div class="form-group">
+                        <label for="temperature">Temperature</label>
+                        <input type="number" class="form-control" id="temperature" value="0">
+                        <p class="errorText">Please enter a number</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="fromDegree">From</label>
+                        <select id="fromDegree" class="form-control">
+                            <option value="degreeCelsius">Celsius</option>
+                            <option value="degreeFahrenheit">Fahrenheit</option>
+                            <option value="degreeRankine">Rankine</option>
+                            <option value="degreeReaumur">Reaumur</option>
+                            <option value="kelvin">Kelvin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="toDegree">To</label>
+                        <select id="toDegree" class="form-control">
+                            <option value="degreeCelsius">Celsius</option>
+                            <option value="degreeFahrenheit">Fahrenheit</option>
+                            <option value="degreeRankine">Rankine</option>
+                            <option value="degreeReaumur">Reaumur</option>
+                            <option value="kelvin">Kelvin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-default">Convert</button>
+                    <h4 id="result"></h4>
+                </div>
+            </div>
+        </div>
+        <div id="loader">
+            <img src="Assets/sunny.svg" />
+        </div>
+    </div>
+
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script>
+        var TempConverter = (function (TempConverter) {
+            'use strict';
+
+            TempConverter.Convert = function (temperature, fromUnit, toUnit, callback) {
+                $.ajax({
+                    url: '/api/tempconverter?temperature=' + temperature + '&fromunit=' + fromUnit + '&toUnit=' + toUnit,
+                    success: function (response) {
+                        callback(response);
+                    }
+                });
+            };
+
+            return TempConverter;
+        }(TempConverter || {}));
+
+        //document ready
+        $(function () {
+            $('.temp-converter [type="submit"]').click(function (e) {
+                e.preventDefault();
+
+                var loader = $('#loader').fadeIn('fast');
+                var result = $('#result').fadeOut('fast');
+                var errotText = $('.errorText').hide();
+
+                var temperature = $('#temperature').val();
+                var fromDegree = $('#fromDegree').val();
+                var toDegree = $('#toDegree').val();
+
+                if (temperature) {
+                    TempConverter.Convert(temperature, fromDegree, toDegree, function (response) {
+                        loader.fadeOut('fast');
+                        $('#result').html((Math.round(response * 10) / 10).toFixed(1) + ' Degrees').fadeIn('fast');
+                    });
+                }
+                else {
+                    loader.fadeOut('fast');
+                    $('#temperature + .errorText').show();
+                }
+            })
+        });
+    </script>
+</body>
+</html>

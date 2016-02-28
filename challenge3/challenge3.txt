@@ -23,3 +23,5 @@ PUT /api/phonenumbers/{string phoneNumber}
  1: Phone number already activated
  2: Phone number not found
 *****************************
+
+Or click run and have your very own local api... :)

@@ -1,0 +1,27 @@
+http://compareit4mechallenge3.azurewebsites.net/
+
+*****************************
+GET /api/customers
+
+Success: List of customers
+Error: Empty list of customers
+*****************************
+GET /api/phonenumbers
+
+Success: List of phone numbers
+Error: Empty list of phone numbers
+****************************
+GET /api/phonenumbers/{Guid customerID}
+
+Success: List of phone numbers
+Error: Empty list of phone numbers
+*****************************
+PUT /api/phonenumbers/{string phoneNumber}
+
+-1: Internal server error
+ 0: success
+ 1: Phone number already activated
+ 2: Phone number not found
+*****************************
+
+Or click run and have your very own local api... :)
